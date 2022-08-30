@@ -1,7 +1,6 @@
 -- Funcion 1: Retorna la clave del usuario
 create or replace FUNCTION retornarclave(numeric)
     RETURNS TABLE (contrasena char) as 
-	
 	$$
 	BEGIN RETURN QUERY
 		SELECT usuario.contrasena 
@@ -9,7 +8,7 @@ create or replace FUNCTION retornarclave(numeric)
 		WHERE idUsuario = $1;
 	END;
 	$$
-    language 'plpgsql';
+language 'plpgsql';
 
 -- Funcion 2: Retornar la cantidad disponible de un producto
 create or replace FUNCTION retornarinv(numeric)
@@ -21,7 +20,7 @@ create or replace FUNCTION retornarinv(numeric)
 		WHERE codigoBarra = $1;
 	END;
     $$
-    language 'plpgsql';
+language 'plpgsql';
 
 -- Funcion 3: Retornar plata (Factura)
 create or replace FUNCTION facturar(numeric)
@@ -33,7 +32,7 @@ create or replace FUNCTION facturar(numeric)
 		WHERE venta.idVenta = $1;
 	END;
     $$
-    language 'plpgsql';
+language 'plpgsql';
 	
 -- Funcion 4: Retornar precio total factura
 create or replace FUNCTION total(numeric)
@@ -45,7 +44,7 @@ create or replace FUNCTION total(numeric)
 		WHERE venta.idVenta = $1;
 	END;
     $$
-    language 'plpgsql';
+language 'plpgsql';
 	
 -- Funcion 5: Retornar info reporte
 create or replace FUNCTION reporteDiario()
@@ -61,10 +60,8 @@ create or replace FUNCTION reporteDiario()
 	FROM (suma INNER JOIN producto USING (nombre)) INNER JOIN categoria ON (producto.tipo = categoria.codigo);
 	END;
     $$
-    language 'plpgsql';
+language 'plpgsql';
 	
-
-
 -- Funcion 6: Retornar total reporte
 create or replace FUNCTION reporteDiarioTotal()
     RETURNS TABLE (precioReporte numeric(15)) as
@@ -73,9 +70,10 @@ create or replace FUNCTION reporteDiarioTotal()
 	SELECT SUM(precio) FROM reporteDiario();
 	END;
     $$
-    language 'plpgsql';
+language 'plpgsql';
 
 --Pruebas y Consultas
+
 --Retornar la cantidad disponible de un producto
 SELECT * FROM retornarinv (201000);
 
