@@ -23,7 +23,7 @@ create or replace FUNCTION retornarinv(numeric)
     $$
     language 'plpgsql';
 
---Funcion 3: Retornar plata (Factura)
+-- Funcion 3: Retornar plata (Factura)
 create or replace FUNCTION facturar(numeric)
     RETURNS TABLE (nombre char(20), cantidad numeric(5), precio numeric(15)) as
     $$
@@ -35,7 +35,7 @@ create or replace FUNCTION facturar(numeric)
     $$
     language 'plpgsql';
 	
---Funcion 4: Retornar precio total factura
+-- Funcion 4: Retornar precio total factura
 create or replace FUNCTION total(numeric)
     RETURNS TABLE (precio numeric(15)) as
     $$
@@ -47,8 +47,7 @@ create or replace FUNCTION total(numeric)
     $$
     language 'plpgsql';
 	
---Funcion 5: Retornar info reporte
-
+-- Funcion 5: Retornar info reporte
 create or replace FUNCTION reporteDiario()
     RETURNS TABLE (nombre char(20), cantidad numeric(7), precio numeric(15)) as
     $$
@@ -64,6 +63,15 @@ create or replace FUNCTION reporteDiario()
     $$
     language 'plpgsql';
 
+-- Funcion 6: Retornar total reporte
+create or replace FUNCTION reporteDiarioTotal()
+    RETURNS TABLE (precio numeric(15))
+    $$
+	BEGIN RETURN QUERY
+	SELECT SUM(precio) FROM reporteDiario();
+	END;
+    $$
+    language 'plpgsql';
 
 --Pruebas y Consultas
 --Retornar la cantidad disponible de un producto
