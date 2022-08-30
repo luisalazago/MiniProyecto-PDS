@@ -1,4 +1,3 @@
-
 -- Funcion 1: Retorna la clave del usuario
 create or replace FUNCTION retornarclave(numeric)
     RETURNS TABLE (contrasena char) as 
@@ -50,14 +49,20 @@ create or replace FUNCTION total(numeric)
 	
 --Funcion 5: Retornar info reporte
 
-WITH suma AS (SELECT producto.nombre as nombre, SUM(venta.cantidad) as cantidad 
-			  FROM (producto INNER JOIN on (venta.idProdcut = producto.codigoBarra)
+create or replace FUNCTION reporteDiario()
+    RETURNS TABLE (nombre char(20), cantidad numeric(7), precio numeric(15)) as
+    $$
+	BEGIN RETURN QUERY
+	WITH suma AS (SELECT producto.nombre as nombre, SUM(venta.cantidad) as cantidad 
+			  FROM (producto INNER JOIN venta on (venta.idProducto = producto.codigoBarra))
 			  INNER JOIN registroVenta on (registroVenta.idRegistro = venta.idVenta) 
-			  WHERE registroVenta.fecha = (select current_date)
+			  WHERE registroVenta.fecha = (SELECT CURRENT_DATE)
 			  GROUP BY producto.nombre)
-SELECT suma.nombre, suma.cantidad, suma.cantidad*producto.precio as precio
-FROM suma INNER JOIN USING (nombre);
-	
+	SELECT suma.nombre, suma.cantidad, suma.cantidad*producto.precio
+	FROM suma INNER JOIN producto USING (nombre);
+	END;
+    $$
+    language 'plpgsql';
 
 
 --Pruebas y Consultas
@@ -72,3 +77,6 @@ SELECT * FROM venta;
 
 --Retornar total de la factura
 SELECT * FROM total (301004);
+
+--Retornar reporte diario
+SELECT * FROM reporteDiario();
