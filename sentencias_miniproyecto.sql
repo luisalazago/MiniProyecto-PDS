@@ -51,13 +51,13 @@ create or replace FUNCTION reporteDiario()
     RETURNS TABLE (nombre char(20), cantidad numeric(7), precio numeric(15), tipo char(20)) as
     $$
 	BEGIN RETURN QUERY
-	WITH suma AS (SELECT producto.nombre as nombre, SUM(venta.cantidad) as cantidad 
-			  FROM (producto INNER JOIN venta on (venta.idProducto = producto.codigoBarra))
-			  INNER JOIN registroVenta on (registroVenta.idRegistro = venta.idVenta) 
-			  WHERE registroVenta.fecha = (SELECT CURRENT_DATE)
-			  GROUP BY producto.nombre)
-	SELECT suma.nombre, suma.cantidad, suma.cantidad*producto.precio, categoria.nombre
-	FROM (suma INNER JOIN producto USING (nombre)) INNER JOIN categoria ON (producto.tipo = categoria.codigo);
+		WITH suma AS (SELECT producto.nombre as nombre, SUM(venta.cantidad) as cantidad 
+				FROM (producto INNER JOIN venta on (venta.idProducto = producto.codigoBarra))
+				INNER JOIN registroVenta on (registroVenta.idRegistro = venta.idVenta) 
+				WHERE registroVenta.fecha = (SELECT CURRENT_DATE)
+				GROUP BY producto.nombre)
+		SELECT suma.nombre, suma.cantidad, suma.cantidad*producto.precio, categoria.nombre
+		FROM (suma INNER JOIN producto USING (nombre)) INNER JOIN categoria ON (producto.tipo = categoria.codigo);
 	END;
     $$
 language 'plpgsql';
