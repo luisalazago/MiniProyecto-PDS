@@ -35,8 +35,24 @@ create or replace FUNCTION facturar(numeric)
 	END;
     $$
     language 'plpgsql';
+	
+--Funcion 4: Retornar precio total factura
+create or replace FUNCTION total(numeric)
+    RETURNS TABLE (precio numeric(15)) as
+    $$
+	BEGIN RETURN QUERY
+		SELECT SUM(venta.cantidad * producto.precio)
+		FROM venta INNER JOIN producto on (venta.idProducto = producto.codigoBarra)
+		WHERE venta.idVenta = $1;
+	END;
+    $$
+    language 'plpgsql';
+	
 
---Prueba Consultas
+	
+
+
+--Pruebas y Consultas
 --Retornar la cantidad disponible de un producto
 SELECT * FROM retornarinv (201000);
 
@@ -46,8 +62,5 @@ SELECT * FROM facturar(301004);
 --Retornar toda la información de venta
 SELECT * FROM venta;
 
-
--- Plata total
-SELECT SUM(venta.cantidad * producto.precio) as Total
-FROM venta INNER JOIN producto on (venta.idProducto = producto.codigoBarra)
-WHERE venta.idVenta = 301004;
+--Retornar total de la factura
+SELECT * FROM total (301004);
