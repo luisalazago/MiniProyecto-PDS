@@ -48,7 +48,15 @@ create or replace FUNCTION total(numeric)
     $$
     language 'plpgsql';
 	
+--Funcion 5: Retornar info reporte
 
+WITH suma AS (SELECT producto.nombre as nombre, SUM(venta.cantidad) as cantidad 
+			  FROM (producto INNER JOIN on (venta.idProdcut = producto.codigoBarra)
+			  INNER JOIN registroVenta on (registroVenta.idRegistro = venta.idVenta) 
+			  WHERE registroVenta.fecha = (select current_date)
+			  GROUP BY producto.nombre)
+SELECT suma.nombre, suma.cantidad, suma.cantidad*producto.precio as precio
+FROM suma INNER JOIN USING (nombre);
 	
 
 
