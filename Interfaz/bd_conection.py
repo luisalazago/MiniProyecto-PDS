@@ -5,6 +5,7 @@ https://pynative.com/python-postgresql-insert-update-delete-table-data-to-perfor
 import psycopg2
 
 def insert(postgres_insert_query, record_to_insert="", table=""):
+    ans = -1
     try:
         connection = psycopg2.connect(user="postgres",
                                       password="begueta124",
@@ -12,11 +13,11 @@ def insert(postgres_insert_query, record_to_insert="", table=""):
                                       port="5432",
                                       database="postgres")
         cursor = connection.cursor()
+        print(record_to_insert)
         cursor.execute(postgres_insert_query, record_to_insert)
-        record = cursor.fetchall()
-        print(record)
+
         connection.commit()
-        count = cursor.rowcount
+        count = ans = cursor.rowcount
         print(count, "Record inserted successfully into {} table".format(table))
         if connection:
             cursor.close()
@@ -24,9 +25,11 @@ def insert(postgres_insert_query, record_to_insert="", table=""):
             print("PostgreSQL connection is closed")
     except (Exception, psycopg2.Error) as error:
         print("Error in update operation", error)
+    return ans
 
 
 def insertMany(postgres_insert_query, record_to_insert="", table=""):
+    ans = -1
     try:
         connection = psycopg2.connect(user="postgres",
                                       password="begueta124",
@@ -35,10 +38,9 @@ def insertMany(postgres_insert_query, record_to_insert="", table=""):
                                       database="postgres")
         cursor = connection.cursor()
         cursor.executemany(postgres_insert_query, record_to_insert)
-        record = cursor.fetchall()
-        print(record)
+
         connection.commit()
-        count = cursor.rowcount
+        count = ans = cursor.rowcount
         print(count, "Record inserted successfully into {} table".format(table))
         if connection:
             cursor.close()
@@ -46,7 +48,7 @@ def insertMany(postgres_insert_query, record_to_insert="", table=""):
             print("PostgreSQL connection is closed")
     except (Exception, psycopg2.Error) as error:
         print("Error in update operation", error)
-
+    return ans
 
 
 def select(postgres_insert_query, record_to_select="", table=""):

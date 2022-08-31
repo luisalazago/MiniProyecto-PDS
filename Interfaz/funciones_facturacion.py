@@ -3,39 +3,27 @@ Funciones para interactuar con la base de datos por facturación.
 """
 
 from os import system
-from bd_conection import select
+from bd_conection import select, insertMany
 from random import randint
 
 # Módulo de facturación (siguiente sprint)
-def anadir_bd():
-    pass
+def anadir_bd(rowcolum, lista_de_productos):
+    sql = """insert into venta(idventa, idproducto, cantidad)
+             values (%s, %s, %s)"""
+    record = []
+    print(rowcolum)
+    for ide, c in lista_de_productos: record.append((rowcolum, ide, c))
+    n = insertMany(sql, record)
+    if n != -1:
+        return obtenerVentas(rowcolum)
+    return [[], []]
 
 def obtenerVentas(idRegistro):
-    sql = "SELECT * FROM facturar(%s)"
+    sql1 = "SELECT * FROM facturar(%s)"
     factura = [(idRegistro)]
-    sql = "SELECT * FROM total(%s)"
-    total = [idRegistro]
-    ans1 = select(sql, factura)
-    ans2 = select(sql, total)
+    sql2 = "SELECT * FROM total(%s)"
+    ans1 = select(sql1, factura)
+    ans2 = select(sql2, factura)
     print(ans1, ans2)
     return ans1, ans2
 
-def facturarVenta():
-    system("cls")
-    print("===================================================")
-    print("Bienvenido al modulo de facturacion. A continuacion seleccione la venta a facturar")
-    print("===================================================")
-    #idRegistro = int(input("Digite el numero del registro: "))
-    #Se debe hacer automaticamente desde la base de datos
-    venta, venta_total = obtenerVentas(0)
-    print("")
-    print("!-------------------------------------------------!")
-    print("Factura No: {}".format(randint(100000, 999999)))
-    print("___________________________________________________")
-    print("Nombre del producto: {}".format(venta[0]))
-    print("Cantidad del producto: {}".format(venta[1]))
-    print("Precio del producto: {}".format(venta[2]))
-    print("___________________________________________________")
-    print("Total de la venta: {}".format(venta_total[0]))
-    print("!-------------------------------------------------!")
-    print("")
