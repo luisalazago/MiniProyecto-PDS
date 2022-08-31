@@ -20,7 +20,6 @@ def obtenerInventario():
     return ans
 
 def revisarInventario():
-    system("cls")
     print("===================================================")
     print("Bienvenido al modulo del Inventario. A continuacion digite el producto a evaluar.")
     print("===================================================")
@@ -39,10 +38,10 @@ def revisarInventario():
         lista = obtenerProducto(idProducto)
         print("")
         print("===================================================")
-        print("Nombre del producto: ".format(lista[0]))
-        print("Cantidad del producto: ".format(lista[1]))
-        print("Capacidad maxima del producto: ".format(lista[2]))
-        print("Precio del producto: ".format(lista[3]))
+        print("Nombre del producto: {}".format(lista[0]))
+        print("Cantidad del producto: {}".format(lista[1]))
+        print("Capacidad maxima del producto: {}".format(lista[2]))
+        print("Precio del producto: {}".format(lista[3]))
         print("===================================================")
     else:
         inventario = obtenerInventario()
@@ -50,11 +49,11 @@ def revisarInventario():
         print("Inventario disponible de la empresa XYZ")
         for lista in inventario:
             print("#####################################")
-            print("Codigo del producto: ".format(lista[0]))
-            print("Nombre del producto: ".format(lista[1]))
-            print("Precio del producto: ".format(lista[2]))
-            print("Cantidad disponible del producto: ".format(lista[3]))
-            print("Tipo de producto: ".format(lista[4]))
+            print("Codigo del producto: {}".format(lista[0]))
+            print("Nombre del producto: {}".format(lista[1]))
+            print("Precio del producto: {}".format(lista[2]))
+            print("Cantidad disponible del producto: {}".format(lista[3]))
+            print("Tipo de producto: {}".format(lista[4]))
             print("#####################################")
         print("===================================================")
              
@@ -62,3 +61,4 @@ def revisarInventario():
 if __name__ == "__main__":
     obtenerInventario()
     obtenerProducto(201000)
+    revisarInventario()
