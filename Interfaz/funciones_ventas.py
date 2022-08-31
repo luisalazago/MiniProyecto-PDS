@@ -44,8 +44,20 @@ def registrarVenta():
         rowcolum = select("""SELECT max(idregistro) FROM registroventa""")
     print("rowcolum es", rowcolum[0][0])
     lista_de_productos = anadir_bd(rowcolum[0][0], lista_de_productos)
-    venta_total = [lista_de_productos[0], lista_de_productos[1], id_cliente_venta, id_usuario, fecha2] # Falta el id del usuario que se debe obtener por el sistema.
-    return venta_total
+    # venta_total = [lista_de_productos[0], lista_de_productos[1], id_cliente_venta, id_usuario, fecha2] # Falta el id del usuario que se debe obtener por el sistema.
+    
+    print("!--------------------------------------------------------!")
+    print("Factura No: {}".format(randint(100000, 999999)))
+    print("Facturado por: {}".format(id_usuario))
+    print("Cliente No: {}".format(id_cliente_venta))
+    print("==========================================================")
+    for lista in lista_de_productos[0]:
+        print("Nombre del producto: {}".format(lista[0]))
+        print("Cantidad del producto: {}".format(lista[1]))
+        print("Precio del producto: {}".format(lista[2]))
+        print("__________________________________________________________")
+    print("Precio total: {}".format(lista_de_productos[1][0]))       
+    print("!--------------------------------------------------------!")
 
 if __name__ == "__main__":
     print(registrarVenta())

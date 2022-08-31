@@ -29,7 +29,7 @@ def filtrarInformes():
 def limpiarInformes():
     print("")
     print("===================================================")
-    archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "w")
+    archivo = open("../Miniproyecto/Bases_de_Datos/No_Relacionales/reportes.json", "w")
     archivo.write("")
     archivo.close()
     print("Se ha limpiado el archivo reportes.json")
@@ -56,7 +56,7 @@ def generarInformes():
     informe_final["fecha"] = fecha2
     
     json_object = json.dumps(informe_final, indent = 4)
-    archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "a")
+    archivo = open("/Bases_de_Datos/No_Relacionales/reportes.json", "a")
     archivo.write(json_object)
     archivo.close()
     print("Se ha generado el informe con exito!")
