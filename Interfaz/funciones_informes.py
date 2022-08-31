@@ -49,7 +49,6 @@ def generarInformes():
     json_object = json.dumps(informe_final, indent = 4)
     archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "a")
     archivo.write(json_object)
-    archivo.write("")
     archivo.close()
     print("Se ha generado el informe con exito!")
 
