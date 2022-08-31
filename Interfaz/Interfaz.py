@@ -7,7 +7,7 @@ from os import system
 from funciones_ventas import registrarVenta
 from funciones_facturacion import facturarVenta
 from funciones_inventario import revisarInventario
-from funciones_informes import generarInformes, filtrarInformes
+from funciones_informes import generarInformes, filtrarInformes, limpiarInformes
 from bd_conection import select 
 
 def main():
