@@ -11,9 +11,12 @@ def anadir_bd():
 def obtenerVentas(idRegistro):
     sql = "SELECT * FROM facturar(%s)"
     factura = [(idRegistro)]
-    ans = select(sql, factura)
-    print(ans)
-    return ans
+    sql = "SELECT * FROM total(%s)"
+    total = [idRegistro]
+    ans1 = select(sql, factura)
+    ans2 = select(sql, total)
+    print(ans1, ans2)
+    return ans1, ans2
 
 def facturarVenta():
     system("cls")
