@@ -44,7 +44,7 @@ def generarInformes():
         "precio_total": precio_total[0][0]
     }
     
-    json_object = json.dump(informe, indent = 4)
+    json_object = json.dumps(informe, indent = 4)
     archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "a")
     archivo.write(json_object)
     archivo.close()
