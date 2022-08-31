@@ -10,7 +10,7 @@ from bd_conection import select
 def filtro(tipo):
     pass
 
-def obtenerProductos(idProducto):
+def obtenerProductos():
     sql = "SELECT * FROM reporteDiario()"
     ans1 = select(sql)
     sql = "SELECT * FROM reporteDiarioTotal()"
@@ -30,11 +30,10 @@ def filtrarInformes():
 
 def generarInformes():
     print("===================================================")
-    print("Bienvenido al modulo de generacion de informes. A continuacion llene los datos para generar el informe.")
+    print("Bienvenido al modulo de generacion de informes. Se va a generar el reporte de las ventas del dia.")
     print("===================================================")
-    idProducto = int(input("Digite el id del producto: "))
     
-    reporte, precio_total = obtenerProductos(idProducto)
+    reporte, precio_total = obtenerProductos()
     fecha = datetime.now()
     informe = {
         "nombre": reporte[0][0],
@@ -42,8 +41,7 @@ def generarInformes():
         "tipo": reporte[0][3],
         "cantidad_producto": reporte[0][1],
         "fecha": fecha,
-        "precio_total": precio_total[0][0],
-        "idProducto": idProducto
+        "precio_total": precio_total[0][0]
     }
     
     json_object = json.dump(informe, indent = 4)
