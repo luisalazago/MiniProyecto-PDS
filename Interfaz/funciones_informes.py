@@ -2,21 +2,24 @@
 Funciones para interactuar con la base de datos por ventas.
 """
 
-from os import system
-from datetime import datetime
 import json
-
-from Interfaz.funciones_inventario import obtenerProducto
+from datetime import datetime
+from bd_conection import select
 
 # Módulo de Informes
 def filtro(tipo):
     pass
 
-def obtenerProducto(idProducto):
-    pass
+def obtenerProductos():
+    sql = "SELECT * FROM reporteDiario()"
+    ans1 = select(sql)
+    sql = "SELECT * FROM reporteDiarioTotal()"
+    ans2 = select(sql)
+    print(ans1, ans2)
+    return ans1, ans2
+    
 
 def filtrarInformes():
-    system("cls")
     print("===================================================")
     print("Bienvenido al modulo de filtrado de informes. A continuacion llene los datos para filtrar los infromes.")
     print("===================================================")
@@ -26,13 +29,12 @@ def filtrarInformes():
     
 
 def generarInformes():
-    system("cls")
     print("===================================================")
     print("Bienvenido al modulo de generacion de informes. A continuacion llene los datos para generar el informe.")
     print("===================================================")
     idProducto = int(input("Digite el id del producto: "))
     
-    nombre, precio, tipo, cantidad_producto, cantidad_total = obtenerProducto(idProducto)
+    nombre, precio, tipo, cantidad_producto, cantidad_total = obtenerProductos(idProducto)
     fecha = datetime.now()
     informe = {
         "nombre": nombre,
@@ -45,6 +47,9 @@ def generarInformes():
     }
     
     json_object = json.dump(informe, indent = 4)
-    archivo = open("Bases de Datos\No Relacionales\reportes.json", "a")
+    archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "a")
     archivo.write(json_object)
     archivo.close()
+
+if __name__ == "__main__":
+    obtenerProductos()

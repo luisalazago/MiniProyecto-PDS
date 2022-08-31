@@ -11,13 +11,24 @@ create or replace FUNCTION retornarclave(numeric)
 language 'plpgsql';
 
 -- Funcion 2: Retornar la cantidad disponible de un producto
-create or replace FUNCTION retornarinv(numeric)
+create or replace FUNCTION retornarinvPro(numeric)
     RETURNS TABLE (cantidad numeric(5)) as
     $$
 	BEGIN RETURN QUERY
 		SELECT producto.cantidad
 		FROM producto 
 		WHERE codigoBarra = $1;
+	END;
+    $$
+language 'plpgsql';
+
+-- Funcion 2: Retornar el inventario total de todos los productos
+create or replace FUNCTION retornarinv()
+    RETURNS TABLE (codigoBarra numeric(15), nombre char(20), precio numeric(8), cantidad numeric(5), tipo char(20)) as
+    $$
+	BEGIN RETURN QUERY
+		SELECT producto.codigoBarra, producto.nombre, producto.precio, producto.cantidad, categoria.nombre
+		FROM producto INNER JOIN categoria ON (producto.tipo = categoria.codigo);
 	END;
     $$
 language 'plpgsql';

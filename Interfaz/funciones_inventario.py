@@ -3,10 +3,21 @@ Funciones para interactuar con la base de datos para el inventario.
 """
 
 from os import system
+from bd_conection import select
 
 # Módulo del Inventario
 def obtenerProducto(idProducto):
-    pass
+    sql = """SELECT * FROM retornarinvPro(%s)"""
+    datos = [(idProducto)]
+    ans = select(sql, datos)
+    print(ans)
+    return ans
+
+def obtenerInventario():
+    sql = """SELECT * FROM retornarinv()"""
+    ans = select(sql)
+    print(ans)
+    return ans
 
 def revisarInventario():
     system("cls")
@@ -22,4 +33,7 @@ def revisarInventario():
     print("Capacidad maxima del producto: ".format(capacidad))
     print("Precio del producto: ".format(precio))
     print("===================================================")
-    
+
+if __name__ == "__main__":
+    obtenerInventario()
+    obtenerProducto(201000)

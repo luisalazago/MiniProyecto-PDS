@@ -16,7 +16,7 @@ CREATE TABLE producto(
 	nombre char(20) not null,
 	precio numeric(8) not null,
 	cantidad numeric(5) not null,
-	capacidad numeric(5) not null.
+	capacidad numeric(5) not null,
 	tipo numeric(8) references categoria(codigo) not null);
 
 --Tabla registros de ventas
