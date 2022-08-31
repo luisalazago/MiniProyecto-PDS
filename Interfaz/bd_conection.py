@@ -7,7 +7,7 @@ import psycopg2
 def insert(postgres_insert_query, record_to_insert="", table=""):
     try:
         connection = psycopg2.connect(user="postgres",
-                                      password="begueta124",
+                                      password="PolloFrito1*",
                                       host="127.0.0.1",
                                       port="5432",
                                       database="postgres")
@@ -30,7 +30,7 @@ def select(postgres_insert_query, record_to_select="", table=""):
     ans = []
     try:
         connection = psycopg2.connect(user="postgres",
-                                      password="begueta124",
+                                      password="PolloFrito1*",
                                       host="127.0.0.1",
                                       port="5432",
                                       database="postgres")
