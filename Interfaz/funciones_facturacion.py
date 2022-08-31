@@ -27,5 +27,5 @@ def facturarVenta():
     #idRegistro = int(input("Digite el numero del registro: "))
     #Se debe hacer automaticamente desde la base de datos
     venta_total = obtenerVentas(0)
-    print(venta_total)
+    
     
