@@ -52,35 +52,51 @@ values (205000,'Queso Mozarella', 11000, 100, 100, 5000 );
 
 
 --Registro registroVenta
-insert into registroventa(idregistro, usuario, idcliente_venta, infoventa, fecha)
-values (301000, 1000000004, 0001, 'Sevillana - 2 costillas BBQ', '2022-08-29');
+insert into registroventa(usuario, idcliente_venta, infoventa, fecha)
+values (1000000004, 0001, 'Sevillana - 2 costillas BBQ', '2022-08-31');
 
-insert into registroventa(idregistro, usuario, idcliente_venta, infoventa, fecha)
-values (301001, 1000000004, 0001, 'Zenu - 6 chorizos rancheros', '2022-08-29');
+insert into registroventa(usuario, idcliente_venta, infoventa, fecha)
+values (1000000004, 0001, 'Zenu - 6 chorizos rancheros', '2022-08-29');
 
-insert into registroventa(idregistro, usuario, idcliente_venta, infoventa, fecha)
-values (301002, 1000000003, 0002, 'Smirnoff - Vodka 750ml', '2022-08-20');
+insert into registroventa(usuario, idcliente_venta, infoventa, fecha)
+values (1000000003, 0002, 'Smirnoff - Vodka 750ml', '2022-08-20');
 
-insert into registroventa(idregistro, usuario, idcliente_venta, infoventa, fecha)
-values (301003, 1000000003, 0003, 'Smirnoff - Vodka 750ml', '2022-08-26');
+insert into registroventa(usuario, idcliente_venta, infoventa, fecha)
+values (1000000003, 0003, 'Smirnoff - Vodka 750ml', '2022-08-26');
 
-insert into registroventa(idregistro, usuario, idcliente_venta, infoventa, fecha)
-values (301004, 1000000002, 0002, 'Sevillana - costilla BBQ', '2022-08-28');
+insert into registroventa(usuario, idcliente_venta, infoventa, fecha)
+values (1000000002, 0002, 'Sevillana - costilla BBQ', '2022-08-28');
 
+insert into registroventa(usuario, idcliente_venta, infoventa, fecha)
+values (1000000002, 0002, 'primera insercción de manera automatica', '2022-08-31');
+
+SELECT * FROM registroventa;
 --Registros Venta
 insert into venta(idventa, idproducto, cantidad)
-values (301000, 202000, 2);
+values (1, 202000, 2);
 
 insert into venta(idventa, idproducto, cantidad)
-values (301001, 202001, 6);
+values (2, 202001, 6);
 
 insert into venta(idventa, idproducto, cantidad)
-values (301002, 201000, 1);
+values (3, 201000, 1);
 
 insert into venta(idventa, idproducto, cantidad)
-values (301003, 201000, 1);
+values (4, 201000, 1);
 
 insert into venta(idventa, idproducto, cantidad)
-values (301004, 202000, 1);
+values (5, 202000, 1);
+
+insert into venta(idventa, idproducto, cantidad)
+values (6, 201000, 1);
+
+insert into venta(idventa, idproducto, cantidad)
+values (6, 202000, 2);
+
+insert into venta(idventa, idproducto, cantidad)
+values (6, 202001, 3);
+
+insert into venta(idventa, idproducto, cantidad)
+values (6, 204000, 4);
 
 

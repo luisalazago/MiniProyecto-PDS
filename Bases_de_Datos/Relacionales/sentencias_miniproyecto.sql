@@ -15,14 +15,14 @@ create or replace FUNCTION retornarinvPro(numeric)
     RETURNS TABLE (nombre char(20), cantidad numeric(5), capacidad numeric(5), precio numeric(8)) as
     $$
 	BEGIN RETURN QUERY
-		SELECT producto.cantidad
+		SELECT producto.nombre, producto.cantidad, producto.capacidad, producto.precio
 		FROM producto 
 		WHERE codigoBarra = $1;
 	END;
     $$
 language 'plpgsql';
 
--- Funcion 2: Retornar el inventario total de todos los productos
+-- Funcion 3: Retornar el inventario total de todos los productos
 create or replace FUNCTION retornarinv()
     RETURNS TABLE (codigoBarra numeric(15), nombre char(20), precio numeric(8), cantidad numeric(5), tipo char(20)) as
     $$
@@ -33,7 +33,7 @@ create or replace FUNCTION retornarinv()
     $$
 language 'plpgsql';
 
--- Funcion 3: Retornar plata (Factura)
+-- Funcion 4: Retornar plata (Factura)
 create or replace FUNCTION facturar(numeric)
     RETURNS TABLE (nombre char(20), cantidad numeric(5), precio numeric(15)) as
     $$
@@ -45,7 +45,7 @@ create or replace FUNCTION facturar(numeric)
     $$
 language 'plpgsql';
 	
--- Funcion 4: Retornar precio total factura
+-- Funcion 5: Retornar precio total factura
 create or replace FUNCTION total(numeric)
     RETURNS TABLE (precio numeric(15)) as
     $$
@@ -57,7 +57,7 @@ create or replace FUNCTION total(numeric)
     $$
 language 'plpgsql';
 	
--- Funcion 5: Retornar info reporte
+-- Funcion 6: Retornar info reporte
 create or replace FUNCTION reporteDiario()
     RETURNS TABLE (nombre char(20), cantidad numeric(7), precio numeric(15), tipo char(20)) as
     $$
@@ -73,7 +73,7 @@ create or replace FUNCTION reporteDiario()
     $$
 language 'plpgsql';
 	
--- Funcion 6: Retornar total reporte
+-- Funcion 7: Retornar total reporte
 create or replace FUNCTION reporteDiarioTotal()
     RETURNS TABLE (precioReporte numeric(15)) as
     $$
@@ -86,16 +86,19 @@ language 'plpgsql';
 --Pruebas y Consultas
 
 --Retornar la cantidad disponible de un producto
-SELECT * FROM retornarinv (201000);
+SELECT * FROM retornarinvpro(201000);
+
+--Retornar la cantidad disponible de un producto
+SELECT * FROM retornarinv();
 
 --Retornar el registro de venta de una venta
-SELECT * FROM facturar(301004);
+SELECT * FROM facturar(1);
 
 --Retornar toda la información de venta
 SELECT * FROM venta;
 
 --Retornar total de la factura
-SELECT * FROM total (301004);
+SELECT * FROM total (1);
 
 --Retornar reporte diario
 SELECT * FROM reporteDiario();
