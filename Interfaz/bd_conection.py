@@ -26,6 +26,29 @@ def insert(postgres_insert_query, record_to_insert="", table=""):
         print("Error in update operation", error)
 
 
+def insertMany(postgres_insert_query, record_to_insert="", table=""):
+    try:
+        connection = psycopg2.connect(user="postgres",
+                                      password="begueta124",
+                                      host="127.0.0.1",
+                                      port="5432",
+                                      database="postgres")
+        cursor = connection.cursor()
+        cursor.executemany(postgres_insert_query, record_to_insert)
+        record = cursor.fetchall()
+        print(record)
+        connection.commit()
+        count = cursor.rowcount
+        print(count, "Record inserted successfully into {} table".format(table))
+        if connection:
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
+    except (Exception, psycopg2.Error) as error:
+        print("Error in update operation", error)
+
+
+
 def select(postgres_insert_query, record_to_select="", table=""):
     ans = []
     try:
