@@ -105,3 +105,6 @@ SELECT * FROM reporteDiario();
 
 --Retornar reporte diario total
 SELECT * FROM reportediariototal();
+
+SELECT * FROM registroventa;
+SELECT * FROM venta;
