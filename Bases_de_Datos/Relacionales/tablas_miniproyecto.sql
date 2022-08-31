@@ -21,7 +21,7 @@ CREATE TABLE producto(
 
 --Tabla registros de ventas
 CREATE TABLE registroVenta(
-	idRegistro numeric(10) primary key,
+	idRegistro bigint primary key GENERATED ALWAYS AS IDENTITY,
 	usuario numeric(11) not null,
 	idCliente_venta numeric(11),
 	infoVenta char(200),
@@ -30,10 +30,16 @@ CREATE TABLE registroVenta(
 
 --Tabla Venta
 CREATE TABLE venta(
-	idVenta numeric(10) references registroVenta(idRegistro),
+	idVenta bigint references registroVenta(idRegistro),
 	idProducto numeric(15) references producto(codigoBarra),
 	cantidad numeric(5),
 	primary key(idVenta, idProducto));
 	
+ALTER TABLE registroVenta 
+ALTER COLUMN idRegistro ADD GENERATED ALWAYS AS IDENTITY;
 
-
+DROP TABLE venta;
+DROP TABLE registroventa;
+DROP TABLE producto;
+DROP TABLE usuario;
+DROP TABLE categoria;
