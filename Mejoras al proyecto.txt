@@ -1,0 +1,7 @@
+1. Implementar el manejo de errores en las funciones.
+2. Hacer el log in (Interfaz).
+3. Generación de reportes diarios en diferentes archivos.
+4. Terminar la función de filtro.
+	a. Depende del tipo.
+	b. Depende del archivo del reporte según la fecha.
+5. Mostrar el id de los productos disponibles.
