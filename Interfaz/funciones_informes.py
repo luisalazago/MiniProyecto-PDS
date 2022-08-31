@@ -40,7 +40,7 @@ def generarInformes():
         "precio": str(reporte[0][2]),
         "tipo": reporte[0][3],
         "cantidad_producto": str(reporte[0][1]),
-        "fecha": fecha,
+        "fecha": str(fecha),
         "precio_total": str(precio_total[0][0])
     }
     
