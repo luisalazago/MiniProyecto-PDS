@@ -37,11 +37,11 @@ def generarInformes():
     fecha = datetime.now()
     informe = {
         "nombre": reporte[0][0],
-        "precio": reporte[0][2],
+        "precio": str(reporte[0][2]),
         "tipo": reporte[0][3],
-        "cantidad_producto": reporte[0][1],
+        "cantidad_producto": str(reporte[0][1]),
         "fecha": fecha,
-        "precio_total": precio_total[0][0]
+        "precio_total": str(precio_total[0][0])
     }
     
     json_object = json.dumps(informe, indent = 4)
