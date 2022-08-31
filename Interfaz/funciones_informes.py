@@ -33,7 +33,8 @@ def generarInformes():
     print("===================================================")
     
     reporte, precio_total = obtenerProductos()
-    fecha = "{}-{}-{}".format(str(datetime.year), str(datetime.month), str(datetime.day))
+    fecha1 = datetime.now()
+    fecha2 = "{}-{}-{}".format(str(fecha1.year), str(fecha1.month), str(fecha1.day))
     informe_final = {}
     for informe in reporte:
         temp = {
@@ -43,7 +44,7 @@ def generarInformes():
         }
         informe_final[informe[0]] = temp
     informe_final["precio_total"] = str(precio_total[0][0])
-    informe_final["fecha"] = fecha
+    informe_final["fecha"] = fecha2
     
     json_object = json.dumps(informe_final, indent = 4)
     archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "a")
