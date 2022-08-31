@@ -10,16 +10,15 @@ def obtenerProducto(idProducto):
     sql = """SELECT * FROM retornarinvPro(%s)"""
     datos = [(idProducto)]
     ans = select(sql, datos)
-    print(ans)
     return ans
 
 def obtenerInventario():
     sql = """SELECT * FROM retornarinv()"""
     ans = select(sql)
-    print(ans)
     return ans
 
 def revisarInventario():
+    system("cls")
     print("===================================================")
     print("Bienvenido al modulo del Inventario. A continuacion digite el producto a evaluar.")
     print("===================================================")

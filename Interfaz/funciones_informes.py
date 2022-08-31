@@ -4,6 +4,7 @@ Funciones para interactuar con la base de datos por ventas.
 
 import json
 from datetime import datetime
+from os import system
 from bd_conection import select
 
 # Módulo de Informes
@@ -15,7 +16,6 @@ def obtenerProductos():
     ans1 = select(sql)
     sql = "SELECT * FROM reporteDiarioTotal()"
     ans2 = select(sql)
-    print(ans1, ans2)
     return ans1, ans2
 
 def filtrarInformes():
@@ -29,7 +29,7 @@ def filtrarInformes():
 def limpiarInformes():
     print("")
     print("===================================================")
-    archivo = open("../Miniproyecto/Bases_de_Datos/No_Relacionales/reportes.json", "w")
+    archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "w")
     archivo.write("")
     archivo.close()
     print("Se ha limpiado el archivo reportes.json")
@@ -37,6 +37,7 @@ def limpiarInformes():
     print("")
 
 def generarInformes():
+    system("cls")
     print("===================================================")
     print("Bienvenido al modulo de generacion de informes. Se va a generar el reporte de las ventas del dia.")
     print("===================================================")
@@ -56,7 +57,7 @@ def generarInformes():
     informe_final["fecha"] = fecha2
     
     json_object = json.dumps(informe_final, indent = 4)
-    archivo = open("/Bases_de_Datos/No_Relacionales/reportes.json", "a")
+    archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "a")
     archivo.write(json_object)
     archivo.close()
     print("Se ha generado el informe con exito!")

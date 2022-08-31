@@ -42,7 +42,6 @@ def registrarVenta():
     rowcolum = 0
     if insert(sql, record) != -1:
         rowcolum = select("""SELECT max(idregistro) FROM registroventa""")
-    print("rowcolum es", rowcolum[0][0])
     lista_de_productos = anadir_bd(rowcolum[0][0], lista_de_productos)
     # venta_total = [lista_de_productos[0], lista_de_productos[1], id_cliente_venta, id_usuario, fecha2] # Falta el id del usuario que se debe obtener por el sistema.
     
@@ -56,7 +55,7 @@ def registrarVenta():
         print("Cantidad del producto: {}".format(lista[1]))
         print("Precio del producto: {}".format(lista[2]))
         print("__________________________________________________________")
-    print("Precio total: {}".format(lista_de_productos[1][0]))       
+    print("Precio total: {}".format(lista_de_productos[1][0][0]))       
     print("!--------------------------------------------------------!")
 
 if __name__ == "__main__":
