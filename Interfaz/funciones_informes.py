@@ -25,7 +25,16 @@ def filtrarInformes():
     tipo = str(input("Ingrese el tipo a filtrar: "))
     informes = filtro(tipo)
     print(informes)
-    
+
+def limpiarInformes():
+    print("")
+    print("===================================================")
+    archivo = open("../Bases_de_Datos/No_Relacionales/reportes.json", "w")
+    archivo.write("")
+    archivo.close()
+    print("Se ha limpiado el archivo reportes.json")
+    print("===================================================")
+    print("")
 
 def generarInformes():
     print("===================================================")
