@@ -4,12 +4,16 @@ Funciones para interactuar con la base de datos por facturación.
 
 from os import system
 
-# Módulo de facturación
+# Módulo de facturación (siguiente sprint)
 def anadir_bd():
     pass
 
 def obtenerVentas(idRegistro):
-    pass
+    sql = "SELECT * FROM facturar(%s)"
+    factura = [(idRegistro)]
+    ans = select(sql, factura)
+    print(ans)
+    return ans
 
 def facturarVenta():
     system("cls")
