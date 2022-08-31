@@ -3,6 +3,7 @@ Funciones para interactuar con la base de datos por facturación.
 """
 
 from os import system
+import select
 
 # Módulo de facturación (siguiente sprint)
 def anadir_bd():
