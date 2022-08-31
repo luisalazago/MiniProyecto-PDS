@@ -33,7 +33,7 @@ def generarInformes():
     print("===================================================")
     
     reporte, precio_total = obtenerProductos()
-    fecha = "{}-{}-{}".format(datetime.year, datetime.month, datetime.day)
+    fecha = "{}-{}-{}".format(str(datetime.year), str(datetime.month), str(datetime.day))
     informe_final = {}
     for informe in reporte:
         temp = {
