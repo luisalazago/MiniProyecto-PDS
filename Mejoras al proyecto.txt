@@ -4,4 +4,5 @@
 4. Terminar la función de filtro.
 	a. Depende del tipo.
 	b. Depende del archivo del reporte según la fecha.
-5. Mostrar el id de los productos disponibles.
+5. Añadir el módulo de los proveedores.
+
