@@ -35,11 +35,11 @@ CREATE TABLE venta(
 	cantidad numeric(5),
 	primary key(idVenta, idProducto));
 	
-ALTER TABLE registroVenta 
-ALTER COLUMN idRegistro ADD GENERATED ALWAYS AS IDENTITY;
+--ALTER TABLE registroVenta 
+--ALTER COLUMN idRegistro ADD GENERATED ALWAYS AS IDENTITY;
 
-DROP TABLE venta;
-DROP TABLE registroventa;
-DROP TABLE producto;
-DROP TABLE usuario;
-DROP TABLE categoria;
+--DROP TABLE venta;
+--DROP TABLE registroventa;
+--DROP TABLE producto;
+--DROP TABLE usuario;
+--DROP TABLE categoria;
