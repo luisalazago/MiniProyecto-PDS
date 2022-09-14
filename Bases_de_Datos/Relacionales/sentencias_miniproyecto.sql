@@ -12,12 +12,12 @@ language 'plpgsql';
 
 -- Funcion 2: Retornar la cantidad disponible de un producto
 create or replace FUNCTION retornarinvPro(numeric)
-    RETURNS TABLE (nombre char(20), cantidad numeric(5), capacidad numeric(5), precio numeric(8)) as
+    RETURNS TABLE (codigoBarra numeric(15), nombre char(20), precio numeric(8), cantidad numeric(5), tipo char(20)) as
     $$
 	BEGIN RETURN QUERY
-		SELECT producto.nombre, producto.cantidad, producto.capacidad, producto.precio
-		FROM producto 
-		WHERE codigoBarra = $1;
+		SELECT producto.codigoBarra, producto.nombre, producto.precio, producto.cantidad, categoria.nombre
+		FROM producto INNER JOIN categoria ON (producto.tipo = categoria.codigo)
+		WHERE producto.codigoBarra = $1;
 	END;
     $$
 language 'plpgsql';

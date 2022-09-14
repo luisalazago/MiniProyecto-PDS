@@ -4,7 +4,7 @@ Interfaz temporal de la Empresa XYZ
 
 from datetime import datetime
 from funciones_ventas import registrarVenta
-from funciones_inventario import revisarInventario
+from funciones_inventario import revisarInventario1
 from funciones_informes import generarInformes, filtrarInformes, limpiarInformes
 
 def main():
@@ -26,7 +26,7 @@ def main():
             if x < 1 or x > 6: print("El numero no esta permitido, por favor seleccione uno correcto.")
         print("===================================================")
         if(x == 1): registrarVenta()
-        elif(x == 2): revisarInventario()
+        elif(x == 2): revisarInventario1()
         elif(x == 3):
             fecha1 = datetime.now()
             fecha1 = "{}-{}-{}".format(str(fecha1.year), str(fecha1.month), str(fecha1.day)) 
