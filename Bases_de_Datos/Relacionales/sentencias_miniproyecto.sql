@@ -58,27 +58,27 @@ create or replace FUNCTION total(numeric)
 language 'plpgsql';
 	
 -- Funcion 6: Retornar info reporte
-create or replace FUNCTION reporteDiario()
-    RETURNS TABLE (nombre char(20), cantidad numeric(7), precio numeric(15), tipo char(20)) as
+create or replace FUNCTION reporteDiario(date)
+    RETURNS TABLE (nombre char(20), cantidad numeric(7), precio numeric(15), tipo char(20), cod_tipo numeric(8)) as
     $$
 	BEGIN RETURN QUERY
 		WITH suma AS (SELECT producto.nombre as nombre, SUM(venta.cantidad) as cantidad 
 				FROM (producto INNER JOIN venta on (venta.idProducto = producto.codigoBarra))
 				INNER JOIN registroVenta on (registroVenta.idRegistro = venta.idVenta) 
-				WHERE registroVenta.fecha = (SELECT CURRENT_DATE)
+				WHERE registroVenta.fecha = $1
 				GROUP BY producto.nombre)
-		SELECT suma.nombre, suma.cantidad, suma.cantidad*producto.precio, categoria.nombre
+		SELECT suma.nombre, suma.cantidad, suma.cantidad*producto.precio, categoria.nombre, categoria.codigo
 		FROM (suma INNER JOIN producto USING (nombre)) INNER JOIN categoria ON (producto.tipo = categoria.codigo);
 	END;
     $$
 language 'plpgsql';
 	
 -- Funcion 7: Retornar total reporte
-create or replace FUNCTION reporteDiarioTotal()
+create or replace FUNCTION reporteDiarioTotal(date)
     RETURNS TABLE (precioReporte numeric(15)) as
     $$
 	BEGIN RETURN QUERY
-	SELECT SUM(precio) FROM reporteDiario();
+	SELECT SUM(precio) FROM reporteDiario($1);
 	END;
     $$
 language 'plpgsql';
