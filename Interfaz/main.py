@@ -44,7 +44,11 @@ def ventas():
 
 @app.route("/inventario")
 def inventario():
-    return render_template("inventario.html")
+    return render_template("inventario.html", rol = rol)
+
+@app.route("/inventario/un_producto")
+def un_producto():
+    return "Hola Producto!"
 
 if __name__ == "__main__":
     app.run(debug = True)

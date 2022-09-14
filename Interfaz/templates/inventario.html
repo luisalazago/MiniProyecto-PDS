@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Inventario</title>
-</head>
-<body>
-	<h1>Esta es la pagina de Inventario</h1>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='inventario.css') }}">
+		<title>Inventario</title>
+	</head>
+	<body>
+		<div class="wrapper">
+		    <div class="sidebar">
+		        <h2>Acciones</h2>
+		        <ul>
+		            {% if rol == 'admin'%}
+		            	<li><a href="#"><i class="fas fa-home"></i>Informes</a></li>
+		            {% endif %}
+		            <li><a href="{{url_for('ventas')}}"><i class="fas fa-user"></i>Ventas</a></li>
+		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li> 
+		            <!--
+		            <li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
+		            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+		            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
+		            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
+		        	-->
+		        </ul> 
+		    </div>
+		    <div class="main_content">
+		        <h1>Inventario</h1>
+		        <p>Rol: {{rol}}</p>
+		        <div class="container">
+			        <a href="{{url_for('un_producto')}}"><button class="all_inventario button1">Inventario de un solo producto</button></a>
+					<button class="all_inventario button2">Inventario de todos los productos</button>
+		    	</div>
+		    </div>
+		</div>
+	</body>
 </html>
