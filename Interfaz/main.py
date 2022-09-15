@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, render_template, request
 import sys
 sys.path.append("../Funciones")
 from usuario import verificar_contrasena, is_admin
+from funciones_inventario import revisar_inventario
 
 app = Flask(__name__)
 usuario_activo = None
@@ -25,9 +26,10 @@ def login():
         fallo = False
     return render_template("index.html", content = texto)
 
-@app.route("/home", methods = ["POST"])
+@app.route("/home", methods = ["POST", "GET"])
 def home():
     global fallo, usuario_activo, rol
+    print(1)
     if(usuario_activo != None): return render_template("home.html", user = usuario_activo, password = "Paila pa", rol = rol)
     usuario = request.form["user"]
     contra = request.form["contra"]
@@ -46,9 +48,21 @@ def ventas():
 def inventario():
     return render_template("inventario.html", rol = rol)
 
-@app.route("/inventario/un_producto")
-def un_producto():
+@app.route("/inventario/des_inventario", methods = ["POST"])
+def des_inventario():
+    if("un_producto" in request.form):
+        return render_template("ingresar_producto.html", rol = rol, fallo = False)
+    else:
+        return render_template("todo_productos.html", rol = rol)
     return "Hola Producto!"
+
+@app.route("/inventario/des_inventario/un_producto", methods = ["POST"])
+def un_producto():
+    id_producto = int(request.form["id_producto"])
+    producto = revisar_inventario(id_producto)
+    if(not len(producto)):
+        return render_template("ingresar_producto.html", rol = rol, fallo = True)
+    return render_template("un_producto.html", info_producto = producto)
 
 if __name__ == "__main__":
     app.run(debug = True)
