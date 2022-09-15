@@ -30,7 +30,9 @@ def login():
 def home():
     global fallo, usuario_activo, rol
     print(1)
-    if(usuario_activo != None): return render_template("home.html", user = usuario_activo, password = "Paila pa", rol = rol)
+    if(usuario_activo != None): return render_template("home.html", user = usuario_activo, 
+                                                                    password = "Paila pa", 
+                                                                    rol = rol)
     usuario = request.form["user"]
     contra = request.form["contra"]
     if verificar_contrasena(usuario, contra):
@@ -60,9 +62,18 @@ def des_inventario():
 def un_producto():
     id_producto = int(request.form["id_producto"])
     producto = revisar_inventario(id_producto)
+    producto_mostrar = []
+    j = 0
+    for i in producto[0]:
+        if j > 0:
+            producto_mostrar.append(producto[0][i])
+        j += 1
+        
     if(not len(producto)):
-        return render_template("ingresar_producto.html", rol = rol, fallo = True)
-    return render_template("un_producto.html", info_producto = producto)
+        return render_template("ingresar_producto.html ", rol = rol, fallo = True)
+    return render_template("un_producto.html", nombre = producto_mostrar[1], id_producto = id_producto,
+                                               cantidad = producto_mostrar[2], capacidad = producto_mostrar[3],
+                                               precio = producto_mostrar[4])
 
 if __name__ == "__main__":
     app.run(debug = True)
