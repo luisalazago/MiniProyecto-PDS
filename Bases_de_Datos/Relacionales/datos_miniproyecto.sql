@@ -99,4 +99,33 @@ values (6, 202001, 3);
 insert into venta(idventa, idproducto, cantidad)
 values (6, 204000, 4);
 
+--Registros provedor y distribuidoras
+--Frutas y Verduras
+insert into provedor(codigo, nombre)
+values(700100, 'Waruwa');
+
+--Licores y Cigarrillos
+insert into provedor(codigo, nombre)
+values(700101, 'JM Licores');
+
+--Carnes y lacteos
+insert into provedor(codigo, nombre)
+values(700102, 'Carnes Santacruz');
+
+--Registros producto Ofrecido
+insert into prodofrecido(idprovedor, idproducto, preciounitario)
+values(700101, 201000, 40000);
+
+insert into prodofrecido(idprovedor, idproducto, preciounitario)
+values(700102, 202000, 20000);
+
+insert into prodofrecido(idprovedor, idproducto, preciounitario)
+values(700102, 202001, 25000);
+
+insert into prodofrecido(idprovedor, idproducto, preciounitario)
+values(700100, 204000, 8000);
+
+insert into prodofrecido(idprovedor, idproducto, preciounitario)
+values(700102, 205000, 11000);
+
 
