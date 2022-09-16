@@ -34,6 +34,18 @@ CREATE TABLE venta(
 	idProducto numeric(15) references producto(codigoBarra),
 	cantidad numeric(5),
 	primary key(idVenta, idProducto));
+
+--Tabla Provedor
+CREATE TABLE provedor(
+	codigo numeric(8) primary key,
+	nombre char(20) not null);
+	
+--Tabla Producto Ofrecido
+CREATE TABLE prodOfrecido(
+	idProvedor numeric(8) references provedor(codigo),
+	idProducto numeric(15) references producto(codigoBarra),
+	precioUnitario numeric(8) not null,
+	primary key(idProvedor, idProducto));
 	
 --ALTER TABLE registroVenta 
 --ALTER COLUMN idRegistro ADD GENERATED ALWAYS AS IDENTITY;
