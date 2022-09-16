@@ -65,7 +65,7 @@ def un_producto():
     if(not len(producto)):
         return render_template("ingresar_producto.html ", rol = rol, fallo = True)
     return render_template("un_producto.html", nombre = producto[0]["name_prod"], id_producto = producto[0]["id_prod"],
-                                               cantidad =  producto[0]["cant_prod"], capacidad =  producto[0]["cap_prod"],
+                                               cantidad =  producto[0]["cant_prod"], categoria =  producto[0]["cap_prod"],
                                                precio =  producto[0]["price_prod"])
 
 if __name__ == "__main__":
