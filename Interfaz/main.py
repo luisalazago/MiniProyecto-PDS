@@ -56,24 +56,17 @@ def des_inventario():
         return render_template("ingresar_producto.html", rol = rol, fallo = False)
     else:
         return render_template("todo_productos.html", rol = rol)
-    return "Hola Producto!"
 
 @app.route("/inventario/des_inventario/un_producto", methods = ["POST"])
 def un_producto():
     id_producto = int(request.form["id_producto"])
     producto = revisar_inventario(id_producto)
-    producto_mostrar = []
-    j = 0
-    for i in producto[0]:
-        if j > 0:
-            producto_mostrar.append(producto[0][i])
-        j += 1
-        
+    print(producto)
     if(not len(producto)):
         return render_template("ingresar_producto.html ", rol = rol, fallo = True)
-    return render_template("un_producto.html", nombre = producto_mostrar[1], id_producto = id_producto,
-                                               cantidad = producto_mostrar[2], capacidad = producto_mostrar[3],
-                                               precio = producto_mostrar[4])
+    return render_template("un_producto.html", nombre = producto[0]["name_prod"], id_producto = producto[0]["id_prod"],
+                                               cantidad =  producto[0]["cant_prod"], capacidad =  producto[0]["cap_prod"],
+                                               precio =  producto[0]["price_prod"])
 
 if __name__ == "__main__":
     app.run(debug = True)
