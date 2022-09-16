@@ -115,3 +115,4 @@ def escribir_pdf(provedor, lista_productos, fecha_pedido, fecha_pago, nombre):
 
 if __name__ == "__main__":
     escribir_pdf("Santo Domingo perez peña lisrd sdsdsadasdasdfasdasdasd", "", "15-9-2022", "1-10-2022", "salida")
+ 
