@@ -43,6 +43,7 @@ def revisar_inventario(idProducto = None):
         informe: list<dic()> con la información de todos los productos. La información
                  es entregada de la siguiente manera:
                  id_prod, name_prod, cant_prod, cap_prod, price_prod
+                 en caso de que idProducto no sea valido se devolvera una lista vacia
     """
     datos, informe = None, []
     if idProducto == None: datos = obtenerInventario()
@@ -94,8 +95,8 @@ def revisarInventario1():
              
 
 if __name__ == "__main__":
-    obtenerInventario()
-    obtenerProducto(201000)
-    revisar_inventario()
-    revisar_inventario(201000)
-    revisar_inventario(201010)
+    print(obtenerInventario(), "´p")
+    print(obtenerProducto(201000),"px")
+    print(revisar_inventario())
+    print(revisar_inventario(201000))
+    print(revisar_inventario(201010))

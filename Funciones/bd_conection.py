@@ -51,7 +51,6 @@ def insertMany(postgres_insert_query, record_to_insert="", table=""):
         print("Error in insertMany operation", error)
     return ans
 
-
 def select(postgres_insert_query, record_to_select="", table=""):
     ans = []
     try:
@@ -65,5 +64,20 @@ def select(postgres_insert_query, record_to_select="", table=""):
             connection.close()
             print("PostgreSQL connection is closed")
     except (Exception, psycopg2.Error) as error:
-        print("Error in update operation", error)
+        print("Error in Select operation", error)
     return ans
+
+def update(sql_update_query, record_to_update="", table=""):
+    try:
+        cursor, connection = connection_bd(contrasenia)
+        cursor.executemany(sql_update_query, record_to_update)
+        connection.commit()
+
+        row_count = cursor.rowcount
+        print(row_count, "Records Updated")
+        if connection:
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
+    except (Exception, psycopg2.Error) as error:
+        print("Error while updating PostgreSQL table", error)
