@@ -113,7 +113,7 @@ def escribir_pdf(provedor, lista_productos, fecha_pedido, fecha_pago, total, nom
     p.condiciones_entrega("Términos de entrega: ", "En las instalaciones de la empresa xyz")
     p.escribir(9, 67, "Sirvanse por este medio se piden los siguientes artículos")
     p.tabla(total, lista_productos)
-    p.escribir(9, -20, "Elaborado Por:__________________________Autorizado Por:__________________________Recibido Por:__________________________")
+    p.escribir(9, -20, "Elaborado Por:__________________________ Autorizado Por:__________________________ Recibido Por:__________________________")
     p.output(nombre)
 
 def datos(tupla, fecha1, fecha2):

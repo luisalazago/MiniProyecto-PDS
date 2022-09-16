@@ -7,6 +7,7 @@ html, body {
 	height: 100%;
 	font-family: 'Numans', sans-serif;
 	color: white;
+  background-attachment: fixed;
 }
 
 * {
@@ -72,37 +73,7 @@ html, body {
   margin-left: 350px;
   margin-right: 50px;
   margin-top: 200px;
-}
-
-.all_inventario {
-  position: relative;
-  justify-content: center;
-  width: 50%;
-  height: 25%!important;
-  transition-duration: 0.3s;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  background-color: black;
-  font-size: 120%;
-  left: 24%;
-}
-
-form {
-  height: 30vh;
-  margin-top: 30px;
-}
-
-.button1 {
-  background-color: black;
-  color: white;
-}
-
-.button1:hover {
-  background-color: #AB4BFB;
-  color: black;
+  margin-bottom: 100px;
 }
 
 .wrapper .main_content .header{
@@ -124,4 +95,10 @@ form {
 
 .card-header {
   font-weight: bold!important;
+}
+
+.card {
+  border-style: solid;
+  border-width: 3px!important;
+  border-color: gray;
 }

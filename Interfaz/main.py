@@ -50,12 +50,12 @@ def ventas():
 def inventario():
     return render_template("inventario.html", rol = rol)
 
-@app.route("/inventario/des_inventario", methods = ["POST"])
+@app.route("/inventario/des_inventario", methods = ["POST", "GET"])
 def des_inventario():
     if("un_producto" in request.form):
         return render_template("ingresar_producto.html", rol = rol, fallo = False)
     else:
-        return render_template("todo_productos.html", rol = rol)
+        return redirect(url_for("todos_productos"))
 
 @app.route("/inventario/des_inventario/un_producto", methods = ["POST"])
 def un_producto():
@@ -66,7 +66,12 @@ def un_producto():
         return render_template("ingresar_producto.html ", rol = rol, fallo = True)
     return render_template("un_producto.html", nombre = producto[0]["name_prod"], id_producto = producto[0]["id_prod"],
                                                cantidad =  producto[0]["cant_prod"], categoria =  producto[0]["cap_prod"],
-                                               precio =  producto[0]["price_prod"])
+                                               precio =  producto[0]["price_prod"], rol = rol)
+
+@app.route("/inventario/des_inventario/todos_productos", methods = ["POST", "GET"])
+def todos_productos():
+    inventario_productos = revisar_inventario()
+    return render_template("todo_productos.html", rol = rol, inventario = inventario_productos)
 
 if __name__ == "__main__":
     app.run(debug = True)
