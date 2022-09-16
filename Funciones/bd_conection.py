@@ -4,7 +4,7 @@ https://pynative.com/python-postgresql-insert-update-delete-table-data-to-perfor
 
 import psycopg2
 
-contrasenia = "begueta124" 
+contrasenia = "postgres"
 
 def connection_bd(password_, user_="postgres", host_="127.0.0.1", port_="5432", database_="postgres"):
     connection = psycopg2.connect(user=user_,
