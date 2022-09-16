@@ -70,8 +70,7 @@ html, body {
 .wrapper .main_content{
   width: 100%;
   margin-left: 350px;
-
-
+  margin-top: 80px;
 }
 
 .wrapper .main_content .header{
@@ -103,7 +102,7 @@ html, body {
 .all_inventario {
   position: relative;
   justify-content: center;
-  width: 140%;
+  width: 350%;
   height: 15%;
   margin-top: 5%;
   top: 35%;
@@ -125,7 +124,7 @@ html, body {
 }
 
 .button1:hover {
-  background-color: #51F5DF;
+  background-color: #F616D4;
   color: black;
   font-weight: bold;
 }
@@ -137,7 +136,7 @@ html, body {
 }
 
 .button2:hover {
-  background-color: #D1F616;
-  color: blakc;
+  background-color: #FF6974;
+  color: black;
   font-weight: bold;
 }

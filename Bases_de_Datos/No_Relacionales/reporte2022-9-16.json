@@ -1,0 +1,27 @@
+{
+    "productos": [
+        {
+            "nombre": "Smirnoff",
+            "tipo": "Bebidas",
+            "tipo_cod": "1000",
+            "cantidad_producto": "3",
+            "total": "120000"
+        },
+        {
+            "nombre": "Costilla",
+            "tipo": "Carnes",
+            "tipo_cod": "2000",
+            "cantidad_producto": "1",
+            "total": "20000"
+        },
+        {
+            "nombre": "Chorizo",
+            "tipo": "Carnes",
+            "tipo_cod": "2000",
+            "cantidad_producto": "4",
+            "total": "100000"
+        }
+    ],
+    "precio_total": "240000",
+    "fecha": "2022-9-16"
+}

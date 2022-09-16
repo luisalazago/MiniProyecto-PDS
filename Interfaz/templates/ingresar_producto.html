@@ -16,7 +16,7 @@
 		        <ul>
 		        	<li><a href="{{url_for('home')}}"><i class="fas fa-user"></i>Home</a></li>
 		            {% if rol == 'admin'%}
-		            	<li><a href="#"><i class="fas fa-home"></i>Informes</a></li>
+		            	<li><a href="{{url_for('informes')}}"><i class="fas fa-home"></i>Informes</a></li>
 		            {% endif %}
 		            <li><a href="{{url_for('ventas')}}"><i class="fas fa-user"></i>Ventas</a></li>
 		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li> 

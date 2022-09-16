@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html, body {
-	background-image: url('https://wallpaperaccess.com/full/2581461.jpg');
+	background-image: url('https://fondosmil.com/fondo/53024.jpg');
 	background-size: cover;
-	background-repeat: no-repeat;
-	height: 100%;
-	font-family: 'Numans', sans-serif;
-	color: white;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: 'Numans', sans-serif;
+  color: white;
+  background-attachment: fixed;
 }
 
 * {
@@ -70,8 +71,39 @@ html, body {
 .wrapper .main_content{
   width: 100%;
   margin-left: 350px;
+  margin-right: 50px;
+  margin-top: 200px;
+}
 
+.all_inventario {
+  position: relative;
+  justify-content: center;
+  width: 50%;
+  height: 25%!important;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: black;
+  font-size: 120%;
+  left: 24%;
+}
 
+form {
+  height: 30vh;
+  margin-top: 30px;
+}
+
+.button1 {
+  background-color: black;
+  color: white;
+}
+
+.button1:hover {
+  background-color: #AB4BFB;
+  color: black;
 }
 
 .wrapper .main_content .header{
@@ -91,53 +123,6 @@ html, body {
   margin-bottom: 20px;
 }
 
-.container{
-  display: flex!important;
-  justify-content: space-between;
-  text-align: center;
-  flex-direction: row;
-  width: 85%;
-  height: 80vh;
-}
-
-.all_inventario {
-  position: relative;
-  justify-content: center;
-  width: 140%;
-  height: 15%;
-  margin-top: 5%;
-  top: 35%;
-  left: 15%;
-  transition-duration: 0.3s;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  background-color: black;
-  font-size: 120%;
-}
-
-.button1 {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-}
-
-.button1:hover {
-  background-color: #51F5DF;
-  color: black;
-  font-weight: bold;
-}
-
-.button2 {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-}
-
-.button2:hover {
-  background-color: #D1F616;
-  color: blakc;
-  font-weight: bold;
+.card-header {
+  font-weight: bold!important;
 }

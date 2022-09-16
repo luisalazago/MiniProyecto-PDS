@@ -18,29 +18,35 @@
 		            	<li><a href="{{url_for('informes')}}"><i class="fas fa-home"></i>Informes</a></li>
 		            {% endif %}
 		            <li><a href="{{url_for('ventas')}}"><i class="fas fa-user"></i>Ventas</a></li>
-		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li> 
-		            <!--
-		            <li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
-		            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
-		            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
-		            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
-		        	-->
+		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li>
 		        </ul> 
 		    </div>
 		    <div class="main_content">
 		        <div class="card">
-					<h4 class="card-header">{{nombre}}</h4>
-					<div class="card-body">
-				    	<h5 class="card-title">Información del Producto</h5>
-				    	<hr>
-				    	<p class="card-text">ID del producto: {{id_producto}}</p>
-				    	<p class="card-text">Precio del producto: {{precio}}</p>
-				    	<p class="card-text">Cantidad del producto: {{cantidad}}</p>
-				    	<p class="card-text">Categoria del producto: {{categoria}}</p>
-				  	</div>
+					<h4 class="card-header">Productos</h4>
+					{% if fallo == 'True' %}
+						<div class="card-body">
+							<h5 class="card-title">No hay ventas realizadas.</h5>
+						</div>
+					{% else %}
+						{% for producto in productos['productos']%}
+							<div class="card-body">
+						    	<h5 class="card-title">Información {{producto['nombre']}}</h5>
+						    	<hr>
+						    	<p class="card-text">Tipo del producto: {{producto['tipo']}}</p>
+						    	<p class="card-text">Codigo del tipo del producto: {{producto['tipo_codf']}}</p>
+						    	<p class="card-text">Cantidad del producto: {{producto['cantidad_producto']}}</p>
+						    	<p class="card-text">Total comprado del producto: {{producto['total']}}</p>
+						  	</div>
+						  	<hr>
+				  		{% endfor %}
+				  		<hr>
+				  		<p class="card-text">Precio total: productos['precio_total']</p>
+				  		<p class="card-text">Fecha de informe: productos['fecha']</p>
+					{% endif %}
 				</div>
-				<form action="{{url_for('des_inventario')}}" method="post">
-					<button class="all_inventario button1" name="un_producto" value="un_producto">Volver a buscar otro producto</button>
+				<form action="{{url_for('informes')}}" method="post">
+					<button class="all_inventario button1" name="un_producto" value="un_producto">Volver al módulo de informes</button>
 				</form>
 		    </div>
 		</div>

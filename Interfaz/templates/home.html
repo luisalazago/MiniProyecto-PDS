@@ -12,7 +12,7 @@
 		        <h2>Acciones</h2>
 		        <ul>
 		            {% if rol == 'admin'%}
-		            	<li><a href="#"><i class="fas fa-home"></i>Informes</a></li>
+		            	<li><a href="{{url_for('informes')}}"><i class="fas fa-home"></i>Informes</a></li>
 		            {% endif %}
 		            <li><a href="{{url_for('ventas')}}"><i class="fas fa-user"></i>Ventas</a></li>
 		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li> 
@@ -25,10 +25,13 @@
 		        </ul> 
 		    </div>
 		    <div class="main_content">
-		        <h1>Pagina de Inicio</h1>
-				<p>Usuario: {{user}}</p>
-				<p>Contraseña: {{password}}</p>
-				<p>Rol: {{rol}}</p>
+		    	<div class="titulo">
+		    		<h1>Bienvenido {{nombre}}</h1>
+		    	</div>
+				<div class="texto">
+					<p>Somos la empresa XYZ, ¿qué deseas hacer hoy {{nombre}}?</p>
+					<p>Recuerda que tu rol es: {{rol}} y tus acciones disponibles están a la izquierda</p>
+				</div>
 		    </div>
 		</div>
 	</body>

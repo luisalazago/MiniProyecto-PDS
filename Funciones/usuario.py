@@ -1,5 +1,12 @@
 from bd_conection import select
 
+def traer_nombre(cc):
+    sql = "SELECT usuario.nombre FROM usuario WHERE usuario.idUsuario = %s"
+    ans = select(sql, [cc])
+    if len(ans) == 0: ans = ""
+    else: ans = str(ans[0][0]).strip(" ")
+    return ans
+
 def verificar_contrasena(cc, password):
     ans = False
     sql = "SELECT * FROM retornarclave(%s)"
