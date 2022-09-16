@@ -109,10 +109,10 @@ SELECT * FROM reportediariototal();
 SELECT * FROM registroventa;
 SELECT * FROM venta;
 
--- DROP FUNCTION retornarclave(numeric);
--- DROP FUNCTION retornarinvPro(numeric);
--- DROP FUNCTION retornarinv();
--- DROP FUNCTION facturar(numeric);
--- DROP FUNCTION total(numeric);
--- DROP FUNCTION reporteDiario(date);
--- DROP FUNCTION reporteDiarioTotal(date);
+--DROP FUNCTION retornarclave(numeric);
+--DROP FUNCTION retornarinvPro(numeric);
+--DROP FUNCTION retornarinv();
+--DROP FUNCTION facturar(numeric);
+--DROP FUNCTION total(numeric);
+--DROP FUNCTION reporteDiario(date);
+--DROP FUNCTION reporteDiarioTotal(date);

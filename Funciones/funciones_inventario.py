@@ -97,6 +97,6 @@ def revisarInventario1():
 if __name__ == "__main__":
     print(obtenerInventario(), "´p")
     print(obtenerProducto(201000),"px")
-    print(revisar_inventario())
-    print(revisar_inventario(201000))
-    print(revisar_inventario(201010))
+    #print(revisar_inventario())
+    #print(revisar_inventario(201000))
+    #print(revisar_inventario(201010))

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html, body {
-	background-image: url('https://wallpaperaccess.com/full/2581461.jpg');
+	background-image: url('https://wallpaperaccess.com/full/1624848.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100%;
@@ -70,8 +70,8 @@ html, body {
 .wrapper .main_content{
   width: 100%;
   margin-left: 350px;
-
-
+  margin-right: 50px;
+  margin-top: 300px;
 }
 
 .wrapper .main_content .header{
@@ -89,55 +89,4 @@ html, body {
 
 .wrapper .main_content .info div{
   margin-bottom: 20px;
-}
-
-.container{
-  display: flex!important;
-  justify-content: space-between;
-  text-align: center;
-  flex-direction: row;
-  width: 85%;
-  height: 80vh;
-}
-
-.all_inventario {
-  position: relative;
-  justify-content: center;
-  width: 140%;
-  height: 15%;
-  margin-top: 5%;
-  top: 35%;
-  left: 15%;
-  transition-duration: 0.3s;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  background-color: black;
-  font-size: 120%;
-}
-
-.button1 {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-}
-
-.button1:hover {
-  background-color: #1FC894;
-  color: black;
-  font-weight: bold;
-}
-
-.button2 {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-}
-
-.button2:hover {
-  background-color: #78DC6C;
-  color: white;
-  font-weight: bold;
 }
