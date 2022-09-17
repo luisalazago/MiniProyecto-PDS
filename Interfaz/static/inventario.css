@@ -69,9 +69,8 @@ html, body {
 
 .wrapper .main_content{
   width: 100%;
-  margin-left: 350px;
-
-
+  margin-left: 50vh;
+  margin-top: 5vh;
 }
 
 .wrapper .main_content .header{

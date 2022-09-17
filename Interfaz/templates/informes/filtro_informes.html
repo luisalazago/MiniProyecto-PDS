@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Un Producto</title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='un_producto.css') }}">
+		<title>Informe Filtrado</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='filtro_informes.css') }}">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
 	<body>
@@ -18,29 +18,30 @@
 		            	<li><a href="{{url_for('informes')}}"><i class="fas fa-home"></i>Informes</a></li>
 		            {% endif %}
 		            <li><a href="{{url_for('ventas')}}"><i class="fas fa-user"></i>Ventas</a></li>
-		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li> 
-		            <!--
-		            <li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
-		            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
-		            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
-		            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
-		        	-->
+		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li>
 		        </ul> 
 		    </div>
 		    <div class="main_content">
 		        <div class="card">
-					<h4 class="card-header">{{nombre}}</h4>
-					<div class="card-body">
-				    	<h5 class="card-title">Información del Producto</h5>
-				    	<hr>
-				    	<p class="card-text">ID del producto: {{id_producto}}</p>
-				    	<p class="card-text">Precio del producto: {{precio}}</p>
-				    	<p class="card-text">Cantidad del producto: {{cantidad}}</p>
-				    	<p class="card-text">Categoria del producto: {{categoria}}</p>
-				  	</div>
+					<h4 class="card-header">Informe filtrado de los productos del tipo {{tipo}}</h4>
+					{% for producto in informe['productos']%}
+						<div class="card-body">
+						    <h5 class="card-title">Información {{producto['nombre']}}</h5>
+						    <hr>
+						    <p class="card-text">Tipo del producto: {{producto['tipo']}}</p>
+						    <p class="card-text">Codigo del tipo del producto: {{producto['tipo_cod']}}</p>
+						    <p class="card-text">Cantidad del producto: {{producto['cantidad_producto']}}</p>
+						    <p class="card-text">Total comprado del producto: {{producto['total']}}</p>
+						</div>
+						<hr>
+				  	{% endfor %}
+				  	<div class="card-body">
+				  		<p class="card-text">Precio total: {{informe['precio_total']}}</p>
+				  		<p class="card-text">Fecha de informe: {{informe['fecha']}}</p>
+					</div>
 				</div>
-				<form action="{{url_for('des_inventario')}}" method="post">
-					<button class="all_inventario button1" name="un_producto" value="un_producto">Volver a buscar otro producto</button>
+				<form action="{{url_for('informes')}}" method="post">
+					<button class="all_inventario button1">Volver al módulo de informes</button>
 				</form>
 		    </div>
 		</div>
