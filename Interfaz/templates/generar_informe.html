@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Un Producto</title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='un_producto.css') }}">
+		<title>Informe Generado</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='generar_informe.css') }}">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
 	<body>
@@ -23,10 +23,10 @@
 		    </div>
 		    <div class="main_content">
 		        <div class="card">
-					<h4 class="card-header">Productos</h4>
+					<h4 class="card-header">Informe actual de las ventas de los Productos</h4>
 					{% if fallo == 'True' %}
 						<div class="card-body">
-							<h5 class="card-title">No hay ventas realizadas.</h5>
+							<h5 class="card-title">No hay ventas realizadas en la fecha: {{productos['fecha']}}.</h5>
 						</div>
 					{% else %}
 						{% for producto in productos['productos']%}
@@ -34,15 +34,16 @@
 						    	<h5 class="card-title">Información {{producto['nombre']}}</h5>
 						    	<hr>
 						    	<p class="card-text">Tipo del producto: {{producto['tipo']}}</p>
-						    	<p class="card-text">Codigo del tipo del producto: {{producto['tipo_codf']}}</p>
+						    	<p class="card-text">Codigo del tipo del producto: {{producto['tipo_cod']}}</p>
 						    	<p class="card-text">Cantidad del producto: {{producto['cantidad_producto']}}</p>
 						    	<p class="card-text">Total comprado del producto: {{producto['total']}}</p>
 						  	</div>
 						  	<hr>
 				  		{% endfor %}
-				  		<hr>
-				  		<p class="card-text">Precio total: productos['precio_total']</p>
-				  		<p class="card-text">Fecha de informe: productos['fecha']</p>
+				  		<div class="card-body">
+				  			<p class="card-text">Precio total: {{productos['precio_total']}}</p>
+				  			<p class="card-text">Fecha de informe: {{productos['fecha']}}</p>
+						</div>
 					{% endif %}
 				</div>
 				<form action="{{url_for('informes')}}" method="post">
