@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='ventas.css') }}">
-		<title>Ventas</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='finalizar_venta.css') }}">
+		<title>Factura de la Venta</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
 	<body>
@@ -16,40 +16,30 @@
 		            {% if rol == 'admin'%}
 		            	<li><a href="{{url_for('informes')}}"><i class="fas fa-home"></i>Informes</a></li>
 		            {% endif %}
+		            <li><a href="{{url_for('ventas')}}"><i class="fas fa-user"></i>Ventas</a></li>
 		            <li><a href="{{url_for('inventario')}}"><i class="fas fa-address-card"></i>Inventario</a></li> 
 		        </ul> 
 		    </div>
 		    <div class="main_content">
 		    	<div class="card">
-					<h4 class="card-header">Registrar Venta</h4>
+					<h4 class="card-header">Factura No. {{numero_factura}}</h4>
 					<div class="card-body">
-						<form action="{{url_for('ventas2')}}" method="post">
-							<h5 class="card-title">Digite el ID del producto</h5>
-							<div class="form-group mx-sm-3 mb-2">
-				    			<label for="inputPassword2" class="sr-only">Cantidad</label>
-				    			<input class="form-control" id="inputPassword2" placeholder="ID del producto" name="id_productoVentas">
-				  			</div>
-							<hr>
-							<h5 class="card-title">Digite la cantidad del Producto</h5>
-							<div class="form-group mx-sm-3 mb-2">
-				    			<label for="inputPassword2" class="sr-only">Cantidad</label>
-				    			<input class="form-control" id="inputPassword2" placeholder="Cantidad a comprar" name="cantidad_comprar">
-				  			</div>
-				  			<button type="submit" class="btn btn-primary mb-2">Registrar Producto</button>
-						</form>
+						<h5 class="card-title">Cliente No. {{numero_cliente}}</h5>
+						<h5 class="card-title">Facturado por: {{id_usuario}}</h5>
 						<hr>
-						{% if not nueva_venta %}
-							{% for producto in factura %}
-								<p class="card-text">{{factura[producto][1]}} {{factura[producto][0]}} ${{factura[producto][2]}}</p>
-							{% endfor %}
-							<h6 class="card-title">Total: ${{total}}</h5>
-							<hr>
-						{% endif %}
-						<form action="{{url_for('finalizar_venta')}}" method="post">
-							<button class="all_inventario button1">Finalizar registro de venta</button>
-						</form>
+						{% for producto in factura %}
+							<p class="card-text">Nombre del producto: {{factura[producto][0]}}</p>
+							<p class="card-text">Cantidad del producto: {{factura[producto][1]}}</p>
+							<p class="card-text">Precio del producto: ${{factura[producto][2]}}</p>
+							<p class="card-text"></p>
+						{% endfor %}
+						<hr>
+						<h4 class="card-title pt">Precio total: ${{total}}</h4>
 				  	</div>
 				</div>
+				<form action="{{url_for('ventas')}}" method="post">
+					<button class="all_inventario button1">Volver a registrar otra venta</button>
+				</form>
 		    </div>
 		</div>
 

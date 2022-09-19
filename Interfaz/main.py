@@ -2,6 +2,7 @@
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import datetime
 
+import random
 import json
 import sys
 sys.path.append("../Funciones")
@@ -15,6 +16,11 @@ usuario_activo = None
 nombre_activo = ""
 rol = None
 fallo = False # Fallo usado para el login.
+
+# Variables Ventas
+nueva_venta = True # Esto permite determinar cuando se inicia una venta nueva o se mantiene una hecha.
+productos_ventas = {}
+total_venta = 0
 
 # Funciones auxiliares
 def adminReturn(val):
@@ -61,12 +67,57 @@ def home():
     return redirect(url_for("login"))
 
 # Rutas Ventas
-@app.route("/ventas")
+@app.route("/ventas", methods = ["POST", "GET"])
 def ventas():
     """
     Este es el módulo de ventas.
     """
-    return render_template("/ventas/ventas.html")
+    global nueva_venta
+    if(nueva_venta): nueva_venta = False
+    return render_template("/ventas/ventas.html", rol = rol, factura = productos_ventas, 
+                                                  total = total_venta,
+                                                  nueva_venta = nueva_venta)
+
+@app.route("/ventas/registro_ventas", methods = ["POST"])
+def ventas2():
+    """
+    Está página se accede cuando se necesita verificar lo datos
+    de entrada.
+    """
+    global productos_ventas, total_venta
+    id_producto = int(request.form["id_productoVentas"])
+    cantidad_comprar = int(request.form["cantidad_comprar"])
+    productos = revisar_inventario(id_producto)
+    if(productos[0]["name_prod"] in productos_ventas):
+        productos_ventas[productos[0]["name_prod"]][1] += cantidad_comprar
+    else:
+        productos_ventas[productos[0]["name_prod"]] = [productos[0]["name_prod"], 
+                                                       cantidad_comprar, 
+                                                       productos[0]["price_prod"]]
+    total_venta += cantidad_comprar * int(productos[0]["price_prod"])
+    return render_template("/ventas/ventas.html", rol = rol, factura = productos_ventas, 
+                                                  total = total_venta,
+                                                  nueva_venta = nueva_venta)
+
+@app.route("/ventas/finalizar_venta", methods = ["POST"])
+def finalizar_venta():
+    """
+    Esta página permite dar por finalizada la venta y volver a 
+    registrar otra.
+    """
+    global nueva_venta, productos_ventas, total_venta
+    nueva_venta = True
+    pv, tv = productos_ventas, total_venta
+    
+    productos_ventas = {}
+    total_venta = 0
+    
+    numero_factura = random.randint(1000, 1000000)
+    numero_cliente = random.randint(0, 10000)
+    return render_template("/ventas/finalizar_venta.html", rol = rol, numero_factura = numero_factura,
+                                                           numero_cliente = numero_cliente,
+                                                           id_usuario = usuario_activo,
+                                                           factura = pv, total = tv)
 
 # Rutas Inventario
 @app.route("/inventario")
@@ -98,12 +149,14 @@ def un_producto():
     if(temp != ''):
         id_producto = int(id_producto)
         producto = revisar_inventario(id_producto)
-        print(producto)
     if(not len(producto) or temp == ''):
         return render_template("/inventario/ingresar_producto.html ", rol = rol, fallo = True)
-    return render_template("/inventario/un_producto.html", nombre = producto[0]["name_prod"], id_producto = producto[0]["id_prod"],
-                                                           cantidad =  producto[0]["cant_prod"], categoria =  producto[0]["cap_prod"],
-                                                           precio =  producto[0]["price_prod"], rol = rol)
+    return render_template("/inventario/un_producto.html", nombre = producto[0]["name_prod"], 
+                                                           id_producto = producto[0]["id_prod"],
+                                                           cantidad =  producto[0]["cant_prod"], 
+                                                           categoria =  producto[0]["cap_prod"],
+                                                           precio =  producto[0]["price_prod"], 
+                                                           rol = rol)
 
 @app.route("/inventario/des_inventario/todos_productos", methods = ["POST", "GET"])
 def todos_productos():
@@ -112,7 +165,8 @@ def todos_productos():
     base de datos.
     """
     inventario_productos = revisar_inventario()
-    return render_template("/inventario/todo_productos.html", rol = rol, inventario = inventario_productos)
+    return render_template("/inventario/todo_productos.html", rol = rol, 
+                                                              inventario = inventario_productos)
 
 # Rutas Informes
 @app.route("/informes", methods = ["POST", "GET"])
@@ -147,7 +201,8 @@ def generar_informes():
     productos = json.load(productos)
     print(productos)
     if(not len(productos["productos"])): fallo_informe = 'True'
-    return render_template("/informes/generar_informe.html", rol = rol, productos = productos, fallo = fallo_informe)
+    return render_template("/informes/generar_informe.html", rol = rol, productos = productos, 
+                                                             fallo = fallo_informe)
 
 @app.route("/informes/des_informes/ingresar_filtro", methods = ["POST", "GET"])
 def ingresar_filtro():
@@ -163,13 +218,15 @@ def filtrar():
     encontrados bajo el filtro enviado de la página anterior.
     """
     opcion = request.form["opciones"]
-    if(opcion == "Ninguno"): return render_template("/informes/ingresar_filtro.html", rol = rol, fallo = "True")
+    if(opcion == "Ninguno"): return render_template("/informes/ingresar_filtro.html", rol = rol, 
+                                                                                      fallo = "True")
     fecha2 = "2022-9-14"
     fecha = datetime.now()
     fecha = str(fecha.year) + "-" + str(fecha.month) + "-" + str(fecha.day)
     archivo = "../Bases_de_Datos/No_Relacionales/reporte{}.json".format(fecha2)
     informe = filtrarInformes(archivo, obtenerCodigoProducto(opcion))
-    return render_template("/informes/filtro_informes.html", informe = informe, rol = rol, tipo = opcion)
+    return render_template("/informes/filtro_informes.html", informe = informe, 
+                                                             rol = rol, tipo = opcion)
 
 if __name__ == "__main__":
     app.run(debug = True)
