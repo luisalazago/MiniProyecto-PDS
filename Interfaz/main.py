@@ -8,7 +8,8 @@ import sys
 sys.path.append("../Funciones")
 from usuario import verificar_contrasena, is_admin, traer_nombre
 from funciones_inventario import revisar_inventario
-from funciones_informes import obtenerProductos, generarInformes, filtrarInformes
+from funciones_informes import generarInformes, filtrarInformes
+from funciones_ventas import registrarVenta
 
 # Variables Globales
 app = Flask(__name__)
@@ -84,17 +85,21 @@ def ventas2():
     Está página se accede cuando se necesita verificar lo datos
     de entrada.
     """
-    global productos_ventas, total_venta
+    global productos_ventas, total_venta, nueva_venta
+    if(nueva_venta): nueva_venta = False
     id_producto = int(request.form["id_productoVentas"])
     cantidad_comprar = int(request.form["cantidad_comprar"])
     productos = revisar_inventario(id_producto)
-    if(productos[0]["name_prod"] in productos_ventas):
-        productos_ventas[productos[0]["name_prod"]][1] += cantidad_comprar
-    else:
-        productos_ventas[productos[0]["name_prod"]] = [productos[0]["name_prod"], 
-                                                       cantidad_comprar, 
-                                                       productos[0]["price_prod"]]
-    total_venta += cantidad_comprar * int(productos[0]["price_prod"])
+    if(len(productos) != 0):
+        print("Productos: ", productos)
+        if(productos[0]["id_prod"] in productos_ventas):
+            productos_ventas[productos[0]["id_prod"]][1] += cantidad_comprar
+        else:
+            productos_ventas[productos[0]["id_prod"]] = [productos[0]["name_prod"], 
+                                                        cantidad_comprar, 
+                                                        productos[0]["price_prod"]]
+        total_venta += cantidad_comprar * int(productos[0]["price_prod"])
+    print(productos_ventas)
     return render_template("/ventas/ventas.html", rol = rol, factura = productos_ventas, 
                                                   total = total_venta,
                                                   nueva_venta = nueva_venta)
@@ -108,13 +113,20 @@ def finalizar_venta():
     global nueva_venta, productos_ventas, total_venta
     nueva_venta = True
     pv, tv = productos_ventas, total_venta
-    
     productos_ventas = {}
     total_venta = 0
-    
-    numero_factura = random.randint(1000, 1000000)
-    numero_cliente = random.randint(0, 10000)
-    return render_template("/ventas/finalizar_venta.html", rol = rol, numero_factura = numero_factura,
+    productos = []
+    for temp in pv: productos.append((temp, pv[temp][1]))
+    numero_cliente = str(random.randint(0, 10000))
+    temp, factura = registrarVenta(productos, usuario_activo, id_cliente_venta=numero_cliente)
+    print(temp, "papurri papa")
+    pv, tv = {}, 0
+    i = 0
+    for li in temp[0]:
+        i += 1
+        pv[i] = [str(li[0]).strip(" "), str(li[1]).strip(" "), str(li[2]).strip(" ")]
+    if len(temp[1]) != 0: tv = str(temp[1][0][0])
+    return render_template("/ventas/finalizar_venta.html", rol = rol, numero_factura = factura[0][0],
                                                            numero_cliente = numero_cliente,
                                                            id_usuario = usuario_activo,
                                                            factura = pv, total = tv)

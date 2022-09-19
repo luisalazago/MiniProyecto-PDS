@@ -1,0 +1,41 @@
+{
+    "productos": [
+        {
+            "nombre": "Smirnoff",
+            "tipo": "Bebidas",
+            "tipo_cod": "1000",
+            "cantidad_producto": "14",
+            "total": "560000"
+        },
+        {
+            "nombre": "Costilla",
+            "tipo": "Carnes",
+            "tipo_cod": "2000",
+            "cantidad_producto": "8",
+            "total": "160000"
+        },
+        {
+            "nombre": "Chorizo",
+            "tipo": "Carnes",
+            "tipo_cod": "2000",
+            "cantidad_producto": "25",
+            "total": "625000"
+        },
+        {
+            "nombre": "Tomate",
+            "tipo": "Verduras",
+            "tipo_cod": "4000",
+            "cantidad_producto": "2",
+            "total": "16000"
+        },
+        {
+            "nombre": "Queso Mozarella",
+            "tipo": "Lacteos",
+            "tipo_cod": "5000",
+            "cantidad_producto": "5",
+            "total": "55000"
+        }
+    ],
+    "precio_total": "1416000",
+    "fecha": "2022-9-19"
+}

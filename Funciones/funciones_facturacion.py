@@ -2,9 +2,7 @@
 Funciones para interactuar con la base de datos por facturación.
 """
 
-from os import system
 from bd_conection import select, insertMany
-from random import randint
 
 # Módulo de facturación (siguiente sprint)
 def anadir_bd(rowcolum, lista_de_productos):

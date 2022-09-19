@@ -9,54 +9,20 @@ from funciones_facturacion import anadir_bd
 from bd_conection import insert, select
 
 # Módulo de Ventas.
-def venta():
-    print("")
-    print("===================================================")
-    id_producto = int(input("Digite el id del producto: "))
-    cantidad_gastada = int(input("Digite la cantidad que se compro: "))
-    print("===================================================")
-    print("")
-    return (id_producto, cantidad_gastada)
 
-def registrarVenta():
-    lista_de_productos = []
-    system("cls")
-    print("===================================================")
-    print("Bienvenido al registro de ventas. Por favor digite los siguientes datos.")
-    print("===================================================")
-    cant_prod = int(input("Cuantos tipos de productos va a registrar: "))
-    
-    for _ in range(cant_prod):
-        lista_de_productos.append(venta())
-    
-    print("===================================================")
-    
-    fecha1 = datetime.now()
-    fecha2 = "{}-{}-{}".format(str(fecha1.year), str(fecha1.month), str(fecha1.day))
-    id_cliente_venta = randint(1000000000, 9999999999)
-    id_usuario = 1000000000
-    infoVenta = ""
+def registrarVenta(lista_de_productos, id_usuario, id_cliente_venta = "", info_venta = ""): 
+    fecha = datetime.now()
+    fecha = "{}-{}-{}".format(str(fecha.year), str(fecha.month), str(fecha.day))
     sql = """insert into registroventa(usuario, idcliente_venta, infoventa, fecha)
              values (%s, %s, %s, %s)"""
-    record = (id_usuario, id_cliente_venta, infoVenta, fecha2)
+    record = (id_usuario, id_cliente_venta, info_venta, fecha)
     rowcolum = 0
     if insert(sql, record) != -1:
         rowcolum = select("""SELECT max(idregistro) FROM registroventa""")
     lista_de_productos = anadir_bd(rowcolum[0][0], lista_de_productos)
     # venta_total = [lista_de_productos[0], lista_de_productos[1], id_cliente_venta, id_usuario, fecha2] # Falta el id del usuario que se debe obtener por el sistema.
-    
-    print("!--------------------------------------------------------!")
-    print("Factura No: {}".format(randint(100000, 999999)))
-    print("Facturado por: {}".format(id_usuario))
-    print("Cliente No: {}".format(id_cliente_venta))
-    print("==========================================================")
-    for lista in lista_de_productos[0]:
-        print("Nombre del producto: {}".format(lista[0]))
-        print("Cantidad del producto: {}".format(lista[1]))
-        print("Precio del producto: {}".format(lista[2]))
-        print("__________________________________________________________")
-    print("Precio total: {}".format(lista_de_productos[1][0][0]))       
-    print("!--------------------------------------------------------!")
+    return (lista_de_productos, rowcolum)
+
 
 if __name__ == "__main__":
     print(registrarVenta())
