@@ -1,8 +1,4 @@
-1. Implementar el manejo de errores en las funciones.
-2. Hacer el log in (Interfaz).
-3. Generación de reportes diarios en diferentes archivos.
-4. Terminar la función de filtro.
-	a. Depende del tipo.
-	b. Depende del archivo del reporte según la fecha.
-5. Añadir el módulo de los proveedores.
-
+1. Generar informes pasando la fecha que se quiera usar.
+2. Implementar las funciones de update cada vez que se modificara la cantidad en la base de datos.
+3. Filtrar archivos de informes específicos, que el usuario pueda elegir el informe o los informes.
+4. Implementar en la interfaz hacer peticiones a los provedores para sutir más productos.
