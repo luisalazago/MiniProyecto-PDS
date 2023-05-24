@@ -110,10 +110,3 @@ def generarInformes(fecha):
         archivo.write(json_object)
         archivo.close()
     except: print("""ErrorCreandoArchivo: [Errno 2] no ventas ese dia: '{}'""".format(fecha))
-
-if __name__ == "__main__":
-    archivo = "../Bases_de_Datos/No_Relacionales/reporte2022-9-14.json"
-    generarInformes("2022-9-16")
-    informe = filtrarInformes(archivo, "2000")
-    print(informe)
-

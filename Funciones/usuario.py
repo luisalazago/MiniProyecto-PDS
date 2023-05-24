@@ -17,7 +17,6 @@ def verificar_contrasena(cc, password):
 def is_admin(cc):
     sql = "SELECT tipo FROM usuario WHERE idUsuario = %s"
     data = select(sql, [cc])
-    return data[0][0]
-
-if __name__ == "__main__":
-    is_admin(1000000000)
+    if data:
+        return data[0][0]
+    else: return ""

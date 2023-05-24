@@ -145,6 +145,3 @@ def datos(tupla, fecha1, fecha2):
             tupla = tuple(tupla)
             escribir_pdf(temp[0], temp[1][0], fecha1, fecha2, str(sub_total),"Pedido_{}_{}".format(temp[0], fecha1))
 
-if __name__ == "__main__":
-    escribir_pdf("Santo Domingo perez peña lisrd sdsdsadasdasdfasdasdasd", "", "15-9-2022", "1-10-2022", "0303949483","salida")
-    datos((201000, 202000, 202001, 203000,204000, 205000), "15-9-2022", "1-10-2022")
