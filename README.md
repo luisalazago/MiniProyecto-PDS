@@ -13,3 +13,9 @@ Para la ejecución se requiere ejecutar el archivo:
 ```
 main.py
 ```
+Que se encuentra en la carpeta de **Interfaz** en el repositorio.
+
+## Observaciones
+
+* Para ejecutar el proyecto hay tener en cuenta la versión de Python, para este proyecto se usó la versión **3.10** de Python.
+* Para saber lo usuarios, se debe revisar en la base de datos, el motor gestor de base de datos es *Postgres*.
